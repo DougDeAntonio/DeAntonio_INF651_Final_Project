@@ -41,12 +41,9 @@ function createSelectOptions(users) {
 
 /* 3. toggleCommentSection
 a. Receives a postId as the parameter
-b. Selects the section element with the data-post-id attribute equal to the postId
-received as a parameter
-c. Use code to verify the section exists before attempting to access the classList
-property
-d. At this point in your code, the section will not exist. You can create one to test if
-desired.
+b. Selects the section element with the data-post-id attribute equal to the postId received as a parameter
+c. Use code to verify the section exists before attempting to access the classList property
+d. At this point in your code, the section will not exist. You can create one to test if desired.
 e. Toggles the class 'hide' on the section element
 f. Return the section element */
     
@@ -59,12 +56,9 @@ function toggleCommentSection(postId) {
 
 /* 4. toggleCommentButton
 a. Receives a postId as the parameter
-b. Selects the button with the data-post-id attribute equal to the postId received as a
-parameter
-c. If the button textContent is 'Show Comments' switch textContent to 'Hide
-Comments'
-d. If the button textContent is 'Hide Comments' switch textContent to 'Show
-Comments'
+b. Selects the button with the data-post-id attribute equal to the postId received as a parameter
+c. If the button textContent is 'Show Comments' switch textContent to 'Hide Comments'
+d. If the button textContent is 'Hide Comments' switch textContent to 'Show Comments'
 e. Suggestion (not required) for above: try a ternary statement
 f. Return the button element */
 
