@@ -91,3 +91,98 @@ function deleteChildElements(parentElement) {
     }
     return parentElement;
 }
+
+/* 6. addButtonListeners
+a. Selects all buttons nested inside the main element
+b. If buttons exist:
+c. Loop through the NodeList of buttons
+d. Gets the postId from button.dataset.postId
+e. If a postId exists, add a click event listener to the button (reference addEventListener) - inside the loop so this happens to each button
+f. The listener calls an anonymous function (see cheatsheet)
+g. Inside the anonymous function: the function toggleComments is called with the event and postId as parameters
+h. Return the button elements which were selected
+i. You may want to define an empty toggleComments function for now. The listener test will NOT pass for addButtonListeners until toggleComments is completed.
+Nevertheless, I recommend waiting on the logic inside the toggleComments function until we get there */
+
+
+function addButtonListeners() {
+  let buttons = document.querySelector("main").querySelectorAll("button");
+  buttons.forEach((button) => {
+    button.addEventListener(
+      "click",
+      function (e) {
+        toggleComments(e, button.dataset.postId);
+        },
+        false
+      );
+    });
+  return buttons;
+}
+  
+/*  7. removeButtonListeners
+a. Selects all buttons nested inside the main element
+b. Loops through the NodeList of buttons
+c. Gets the postId from button.dataset.id
+d. If a postId exists, remove the click event listener from the button (reference
+removeEventListener) - inside the loop so this happens to each button
+e. Refer to the addButtonListeners function as this should be nearly identical
+f. Return the button elements which were selected */
+
+function removeButtonListeners() {
+  let buttons = document.querySelector("main").querySelectorAll("button");
+  buttons.forEach((button) => {
+    button.removeEventListener(
+      "click",
+      function (e) {
+        toggleComments(e, button.dataset.postId);
+      },
+      false
+    );
+  });
+  return buttons;
+}
+
+/* 8. createComments
+a. Depends on the createElemWithText function we created
+b. Receives JSON comments data as a parameter
+c. Creates a fragment element with document.createDocumentFragment()
+d. Loop through the comments
+e. For each comment do the following:
+f. Create an article element with document.createElement()
+g. Create an h3 element with createElemWithText('h3', comment.name)
+h. Create an paragraph element with createElemWithText('p', comment.body)
+i. Create an paragraph element with createElemWithText('p', `From:  ${comment.email}`)
+j. Append the h3 and paragraphs to the article element (see cheatsheet)
+k. Append the article element to the fragment
+l. Return the fragment element */
+
+function createComments(comments) {
+  if (comments == undefined || comments == null) return undefined;
+
+  let fragment = document.createDocumentFragment();
+  comments.forEach((comment) => {
+    let article = document.createElement("article");
+    article.append(createElemWithText("h3", comment.name));
+    article.append(createElemWithText("p", comment.body));
+    article.append(createElemWithText("p", `From: ${comment.email}`));
+    fragment.append(article);
+  });
+  return fragment;
+}
+
+/* 9. populateSelectMenu
+a. Depends on the createSelectOptions function we created
+b. Receives the users JSON data as a parameter
+c. Selects the #selectMenu element by id
+d. Passes the users JSON data to createSelectOptions()
+e. Receives an array of option elements from createSelectOptions
+f. Loops through the options elements and appends each option element to the select menu
+g. Return the selectMenu element */
+
+function populateSelectMenu(users) {
+  if (users == undefined || users == null) return undefined;
+  let menu = document.getElementById("selectMenu");
+  let options = createSelectOptions(users);
+  options.forEach((option) => menu.append(option));
+  return menu;
+}
