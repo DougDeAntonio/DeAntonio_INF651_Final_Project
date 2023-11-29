@@ -1,3 +1,4 @@
+
 /* 1. createElemWithText
 a. Receives up to 3 parameters
 b. 1st parameter is the HTML element string name to be created (h1, p, button, etc)
@@ -185,4 +186,79 @@ function populateSelectMenu(users) {
   let options = createSelectOptions(users);
   options.forEach((option) => menu.append(option));
   return menu;
+}
+
+/* 10. getUsers
+a. Fetches users data from: https://jsonplaceholder.typicode.com/ (look at
+Resources section)
+b. Should be an async function
+c. Should utilize a try / catch block
+d. Uses the fetch API to request all users
+e. Await the users data response
+f. Return the JSON data */
+async function getUsers() {
+  const url = BASE_API_URL + "users";
+  try {
+    return fetch(url).then((response) => response.json());
+    } catch (error) {
+      console.error(error);
+  }
+}
+
+
+/* 11. getUserPosts
+a. Receives a user id as a parameter
+b. Fetches post data for a specific user id from:
+https://jsonplaceholder.typicode.com/ (look at Routes section)
+c. Should be an async function
+d. Should utilize a try / catch block
+e. Uses the fetch API to request all posts for a specific user id
+f. Await the users data response
+g. Return the JSON data */
+async function getUserPosts(userId) {
+  if (userId == undefined || userId == null) return undefined;
+  const url = BASE_API_URL + `users/${userId}/posts`;
+  try {
+    return fetch(url).then((response) => response.json());
+    } catch (error) {
+      console.error(error);
+  }
+}
+
+/* 12. getUser
+a. Receives a user id as a parameter
+b. Fetches data for a specific user id from: https://jsonplaceholder.typicode.com/
+(look at Routes section)
+c. Should be an async function
+d. Should utilize a try / catch block
+e. Uses the fetch API to request a specific user id
+f. Await the user data response
+g. Return the JSON data */
+async function getUser(userId) {
+  if (userId == undefined || userId == null) return undefined;
+  const url = BASE_API_URL + `users/${userId}`;
+  try {
+    return fetch(url).then((response) => response.json());
+    } catch (error) {
+      console.error(error);
+  }
+}
+
+/* 13. getPostComments
+a. Receives a post id as a parameter
+b. Fetches comments for a specific post id from:
+https://jsonplaceholder.typicode.com/ (look at Routes section)
+c. Should be an async function
+d. Should utilize a try / catch block
+e. Uses the fetch API to request all comments for a specific post id
+f. Await the users data response
+g. Return the JSON data */
+async function getPostComments(postId) {
+  if (postId == undefined || postId == null) return undefined;
+  const url = BASE_API_URL + `posts/${postId}/comments`;
+  try {
+    return fetch(url).then((response) => response.json());
+    } catch (error) {
+      console.error(error);
+  }
 }
