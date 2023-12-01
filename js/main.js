@@ -338,7 +338,7 @@ e. Defines a variable named element that is equal to:
   ii. IF post data does not exist: create a paragraph element that is identical to the default paragraph found in the html file.
   iii. Optional suggestion: use a ternary for this conditional
 f. Appends the element to the main element
-g. Returns the element variable */
+g. Returns the element variable  */
 
 async function displayPosts(posts) {
   let main = document.querySelector('main');
