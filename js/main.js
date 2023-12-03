@@ -420,12 +420,15 @@ k. Return an array with the userId, posts and the array returned from refreshPos
   [userId, posts, refreshPostsArray] */
 
 async function selectMenuChangeEventHandler(event) {
-  let userId = event?.target?.value || 1; 
-  let posts = await getUserPosts(userId);
-  let refreshPostsArray = await refreshPosts(posts);
+  if (event === undefined) {
+    return undefined;
+    }
+    let userId = event?.target?.value || 1; 
+    let posts = await getUserPosts(userId);
+    let refreshPostsArray = await refreshPosts(posts);
+    return [userId, posts, refreshPostsArray];
+  }
 
-  return [userId, posts, refreshPostsArray];
-}
 
 /* 20. initPage
 a. Dependencies: getUsers, populateSelectMenu
